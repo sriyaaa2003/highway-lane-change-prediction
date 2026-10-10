@@ -1,0 +1,122 @@
+[
+ {
+  "name": "tune0_src",
+  "val_pr_auc": 0.9507991639564115,
+  "n_train": 198000,
+  "wall_s": 267.966139793396,
+  "override": {}
+ },
+ {
+  "name": "tune0_exid",
+  "val_pr_auc": 0.8530009845874673,
+  "n_train": 245710,
+  "wall_s": 330.9815847873688,
+  "override": {}
+ },
+ {
+  "name": "tune1_src",
+  "val_pr_auc": 0.9427225150872353,
+  "n_train": 198000,
+  "wall_s": 269.0902953147888,
+  "override": {
+   "lr": 0.001
+  }
+ },
+ {
+  "name": "tune1_exid",
+  "val_pr_auc": 0.8449344663182962,
+  "n_train": 245710,
+  "wall_s": 336.1328284740448,
+  "override": {
+   "lr": 0.001
+  }
+ },
+ {
+  "name": "tune2_src",
+  "val_pr_auc": 0.9561675837581246,
+  "n_train": 198000,
+  "wall_s": 269.0722246170044,
+  "override": {
+   "lr": 0.004
+  }
+ },
+ {
+  "name": "tune2_exid",
+  "val_pr_auc": 0.8571704092911755,
+  "n_train": 245710,
+  "wall_s": 295.10739612579346,
+  "override": {
+   "lr": 0.004
+  }
+ },
+ {
+  "name": "tune3_src",
+  "val_pr_auc": 0.9515274260864423,
+  "n_train": 198000,
+  "wall_s": 154.60203337669373,
+  "override": {
+   "widths": [
+    16,
+    32,
+    48
+   ]
+  }
+ },
+ {
+  "name": "tune3_exid",
+  "val_pr_auc": 0.8477056463883298,
+  "n_train": 245710,
+  "wall_s": 200.58868074417114,
+  "override": {
+   "widths": [
+    16,
+    32,
+    48
+   ]
+  }
+ },
+ {
+  "name": "tune4_src",
+  "val_pr_auc": 0.9502276620534139,
+  "n_train": 198000,
+  "wall_s": 490.9960880279541,
+  "override": {
+   "widths": [
+    48,
+    96,
+    128
+   ]
+  }
+ },
+ {
+  "name": "tune4_exid",
+  "val_pr_auc": 0.8502342840768082,
+  "n_train": 245710,
+  "wall_s": 607.1401522159576,
+  "override": {
+   "widths": [
+    48,
+    96,
+    128
+   ]
+  }
+ },
+ {
+  "name": "tune5_src",
+  "val_pr_auc": 0.9502369223109732,
+  "n_train": 198000,
+  "wall_s": 280.7228627204895,
+  "override": {
+   "weight_decay": 0.001
+  }
+ },
+ {
+  "name": "tune5_exid",
+  "val_pr_auc": 0.8503901983459853,
+  "n_train": 245710,
+  "wall_s": 351.8898527622223,
+  "override": {
+   "weight_decay": 0.001
+  }
+ }
+]

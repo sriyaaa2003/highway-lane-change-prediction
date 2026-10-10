@@ -1,0 +1,1 @@
+{"wall_s": 2661.3633482456207, "horizons_s": [1.0, 2.0, 3.0], "hgb": {"max_iter": 300, "learning_rate": 0.06, "max_leaf_nodes": 31, "l2_regularization": 1.0, "class_weight": "balanced"}, "bootstrap_resamples": 300}

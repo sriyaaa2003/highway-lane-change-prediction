@@ -1,0 +1,28 @@
+{
+ "highd_7": {
+  "ingest_equal": true,
+  "labels_equal": true,
+  "features_max_abs_diff": 0.0,
+  "bev_equal": true
+ },
+ "highd_41": {
+  "ingest_equal": true,
+  "labels_equal": true,
+  "features_max_abs_diff": 0.0,
+  "bev_equal": true
+ },
+ "exid_12": {
+  "ingest_equal": true,
+  "labels_equal": true,
+  "features_max_abs_diff": 0.0,
+  "bev_equal": true
+ },
+ "exid_70": {
+  "ingest_equal": true,
+  "labels_equal": true,
+  "features_max_abs_diff": 0.0,
+  "bev_equal": true
+ },
+ "hgb_deterministic_max_abs_diff": 0.0,
+ "cnn_cpu_deterministic_max_abs_diff": 0.0
+}

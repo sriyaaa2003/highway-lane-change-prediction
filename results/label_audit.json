@@ -1,0 +1,24 @@
+{
+ "highd": {
+  "cars_flags": 12704,
+  "too_close_to_track_edge": 3957,
+  "measurable": 8747,
+  "share_of_measurable_below_threshold": 0.0078,
+  "flag_minus_midpoint_s_median": 0.04,
+  "flag_minus_midpoint_s_iqr": [
+   -0.16,
+   0.24
+  ]
+ },
+ "exid": {
+  "cars_flags": 23581,
+  "too_close_to_track_edge": 4651,
+  "measurable": 18930,
+  "share_of_measurable_below_threshold": 0.031,
+  "flag_minus_midpoint_s_median": 0.2,
+  "flag_minus_midpoint_s_iqr": [
+   -0.12,
+   0.48
+  ]
+ }
+}

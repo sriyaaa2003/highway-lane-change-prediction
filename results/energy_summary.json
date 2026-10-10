@@ -1,0 +1,101 @@
+{
+ "n_tracks": 140180,
+ "by_dataset": {
+  "exid": {
+   "mean": 207.32,
+   "std": 167.07,
+   "count": 51728
+  },
+  "highd": {
+   "mean": 196.53,
+   "std": 144.42,
+   "count": 88452
+  }
+ },
+ "mean_wh_km_base": 200.51,
+ "accel_source": {
+  "smoothed": 200.51,
+  "dataset_provided": 199.8,
+  "track_corr": 1.0
+ },
+ "clusters": {
+  "per_k": {
+   "2": {
+    "silhouette": 0.46991432217428025,
+    "ari_mean": 0.9783844764935619,
+    "ari_median": 0.98144504668716,
+    "ari_p10": 0.9678178424970771,
+    "ari_min": 0.9496942461185671
+   },
+   "3": {
+    "silhouette": 0.46725358485487795,
+    "ari_mean": 0.5572641578241203,
+    "ari_median": 0.45583674348340614,
+    "ari_p10": 0.4317407698716751,
+    "ari_min": 0.42012412014089245
+   },
+   "4": {
+    "silhouette": 0.25065984300555266,
+    "ari_mean": 0.8238085838077465,
+    "ari_median": 0.7715790069871638,
+    "ari_p10": 0.7525895784043648,
+    "ari_min": 0.7357878343913646
+   },
+   "5": {
+    "silhouette": 0.2799335876374858,
+    "ari_mean": 0.7056360629516827,
+    "ari_median": 0.5437380948122625,
+    "ari_p10": 0.513516421833893,
+    "ari_min": 0.4872230200927709
+   }
+  },
+  "chosen_k": 2,
+  "stable": true
+ },
+ "style_beyond_speed": {
+  "r2_speed_only": 0.046,
+  "r2_speed_plus_cluster": 0.0559,
+  "delta_r2": 0.0099,
+  "binned_speed_control": {
+   "r2_without_cluster": 0.0529,
+   "r2_with_cluster": 0.0583,
+   "delta_r2": 0.0054,
+   "cluster_effect_wh_km": {
+    "1": 36.62
+   }
+  },
+  "delta_r2_ci": [
+   0.0028,
+   0.0206
+  ],
+  "cluster_effect_wh_km_vs_cluster0": {
+   "1": [
+    48.3,
+    26.6,
+    70.17
+   ]
+  }
+ },
+ "cluster_profile": {
+  "0": {
+   "n": 118055,
+   "wh_km": 199.73,
+   "mean_speed": 31.34,
+   "speed_std": 0.72,
+   "p95_abs_acc": 0.42,
+   "jerk_rms": 0.4,
+   "lane_changes": 0.1,
+   "mean_thw": 2.54
+  },
+  "1": {
+   "n": 22125,
+   "wh_km": 204.63,
+   "mean_speed": 23.62,
+   "speed_std": 2.7,
+   "p95_abs_acc": 1.21,
+   "jerk_rms": 0.67,
+   "lane_changes": 0.69,
+   "mean_thw": 2.55
+  }
+ }
+}
