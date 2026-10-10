@@ -1,0 +1,24 @@
+# Vehicle profiles are ASSUMED typical values for a mid-size electric car. They are not measured and not calibrated
+# on real consumption data; every headline number is reported together with a +-20% sensitivity sweep.
+profile:
+  mass_kg: 1900.0
+  cda_m2: 0.65           # drag coefficient x frontal area
+  crr: 0.010             # rolling resistance coefficient
+  rho_air: 1.2
+  eta_drive: 0.90        # battery -> wheels
+  eta_regen: 0.65        # wheels -> battery when braking
+  regen_cap_w: 60000.0   # maximum recovered power at the wheels
+  aux_w: 500.0           # constant auxiliary load
+  g: 9.81
+
+study:
+  classes: [car]               # trucks and vans excluded: a car profile would be wrong for them
+  min_track_km: 0.15
+  sg_window_s: 1.0             # Savitzky-Golay window for the smoothed-acceleration variant
+  sg_polyorder: 2
+  k_range: [2, 3, 4, 5]
+  stability_resamples: 20
+  min_stability_ari: 0.7       # below this the clusters are reported as not stable
+  sensitivity_fraction: 0.2
+  bootstrap_resamples: 200
+  seed: 3

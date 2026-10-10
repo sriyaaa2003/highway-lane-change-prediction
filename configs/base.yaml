@@ -1,0 +1,93 @@
+# Every tunable lives here. Nothing below is hardcoded in src/.
+paths:
+  raw: data                 # holds highd/ and exid/ (csv + png extracted from the zips)
+  canonical: data/canonical # one parquet per recording
+  interim: data/interim     # sample index, features
+  results: results
+
+data:
+  frame_rate: 25.0
+  history_s: 2.0            # required past track length for an anchor
+  horizons_s: [1.0, 2.0, 3.0]
+  sample_stride_frames: 5   # anchor every 0.2 s
+  exclude_after_event_s: 2.5  # drop anchors while the maneuver is still finishing (after the crossing midpoint)
+  event_window_s: 4.0         # window for measuring a flag's lateral displacement
+  min_lateral_disp_m: 1.8     # about half a lane width
+  axis_sample_s: 1.0          # lateral position is averaged over the first/last second of the window
+  max_samples_per_recording: 6000  # uniform random subsample, seeded
+  speed_sanity_max_ms: 70.0
+  exid_heading_unit: auto   # auto | rad | deg  (auto checks against velocity direction)
+
+splits:
+  seed: 17
+  # fractions applied by hashed recording id inside the non-held-out pool
+  frac: {train: 0.6, val: 0.1, cal: 0.1, test: 0.2}
+  highd_holdout_locations: [5]   # P0 audit: loc 1 holds 37 of 60 recordings, so hold out loc 5 (10 recs)
+  exid_holdout_locations: [3, 6]   # P0 audit: 23 recordings, ~5.6k events, ~22% of exiD
+
+features:
+  hist_steps_s: [0.5, 1.0, 2.0]
+  ref_from_s: 2.0               # reference axis = chord of the own path from t-2.0 s to t-1.0 s
+  ref_to_s: 1.0
+  lat_vel_window_s: 0.4         # lateral speed = |change of lane-relative position| over this window
+  lane_width_m: 3.7             # used only to define adjacent-lane lateral bands
+  neighbor_range_m: 60.0
+
+model:
+  hgb: {max_iter: 300, learning_rate: 0.06, max_leaf_nodes: 31, l2_regularization: 1.0, class_weight: balanced}
+  hgb_grid: {max_leaf_nodes: [15, 31, 63], learning_rate: [0.03, 0.06, 0.1]}   # tuned on validation only
+  seeds: [0, 1, 2]
+
+eval:
+  bootstrap_resamples: 1000
+  paired_resamples: 5000      # headline-horizon paired tests; p-value resolution is 2/(paired_resamples+1)
+  min_events_per_class: 30
+  primary_horizon_s: 2.0
+  k_fractions: [0.01, 0.05, 0.2]   # share of exiD training tracks added to highD training (rung R3)
+  bootstrap_seed: 5
+  pre_drift_max_disp_1s_m: 0.3     # harder subset: anchors where the car has not yet started moving sideways
+
+bev:
+  ahead_m: 60.0
+  behind_m: 30.0
+  half_width_m: 8.0
+  cell_long_m: 1.0
+  cell_lat_m: 0.5
+  speed_clip_ms: 20.0       # relative speeds are clipped to +-this and stored as uint8
+  per_recording_cap: 6000   # same samples as the baselines, so CNN and boosting are matched
+  fill_gap_m: 60.0          # scalar fill for "no vehicle in this zone"
+  fill_thw_s: 10.0
+  fill_ttc_s: 30.0
+
+cnn:
+  epochs: 12
+  batch_size: 512
+  lr: 0.002
+  weight_decay: 0.0001
+  widths: [32, 64, 96]
+  embed_dim: 64
+  seeds: [0, 1, 2]
+  patience: 3
+  pos_weight_cap: 20.0
+  max_minutes: 25           # hard cap per training run
+  gpu: T4
+  # validation-only tuning grid (each entry overrides the defaults above); selection never touches test splits
+  tune_grid:
+    - {}
+    - {lr: 0.001}
+    - {lr: 0.004}
+    - {widths: [16, 32, 48]}
+    - {widths: [48, 96, 128]}
+    - {weight_decay: 0.001}
+
+tags:
+  brake_decel_ms2: -2.5      # min longitudinal acceleration in the next brake_window_s below this
+  brake_window_s: 2.0
+  ttc_crit_s: 2.5            # min time-to-collision in the next ttc_window_s below this
+  ttc_window_s: 3.0
+  lane_change_horizon_s: 2.0
+
+mining:
+  n_query: 20
+  k: 100
+  n_draws: 50

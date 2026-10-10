@@ -1,0 +1,24 @@
+[project]
+name = "hwt"
+version = "0.1.0"
+description = "Highway maneuver prediction, uncertainty, scenario mining and energy on highD and exiD"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy", "pandas", "pyarrow", "scipy", "scikit-learn",
+  "pydantic>=2", "pyyaml", "matplotlib", "tabulate",
+]
+
+[project.optional-dependencies]
+ml = ["torch"]            # needed for the CNN module, the ensembles and several tests
+dev = ["pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 110
+src = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
